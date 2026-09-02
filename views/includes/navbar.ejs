@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top custom-navbar">
+
+  <div class="container-fluid px-4">
+
+    <!-- LOGO -->
+    <a class="navbar-brand" href="/">
+      <i class="fa-solid fa-compass"></i>
+    </a>
+
+    <!-- MOBILE -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+      <div class="navbar-nav left-menu"> <a class="nav-link" href="/listings"> Explore </a> <a class="nav-link"
+          href="/listings/new"> Add New Listing </a> <!-- SEARCH -->
+        <form class="navbar-search" action="/listings" method="GET"> <input type="text" name="search"
+            placeholder="Search..."> <button type="submit"> <i class="fa-solid fa-magnifying-glass"></i> </button>
+        </form>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="navbar-nav ms-auto right-menu">
+
+        <% if (!currentUser) { %>
+
+          <a class="nav-link" href="/listings/new">
+            Airbnb your home
+          </a>
+
+          <a class="nav-link" href="/login">
+            <b>Login</b>
+          </a>
+
+          <a class="nav-link" href="/signup">
+            <b>Sign Up</b>
+          </a>
+
+          <% } else { %>
+
+            <a class="nav-link" href="/logout">
+              <b>Logout</b>
+            </a>
+
+            <% } %>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</nav>

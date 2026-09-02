@@ -1,0 +1,24 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>wanderlust</title> 
+</head> 
+<body> 
+    <% layout("/layouts/boilerplate") %> 
+ 
+ 
+<form method="POST" action="/listings" novalidate class="needs-validation"> 
+  <input name="listing[title]" placeholder="title" type="text" required> 
+  <textarea name="listing[description]" placeholder="description"></textarea required> 
+  <input name="listing[image]" placeholder="image URL" type="text"> 
+  <input name="listing[price]" placeholder="price" type="number"required> 
+  <input name="listing[country]" placeholder="country" type="text"required> 
+  <input name="listing[location]" placeholder="location" type="text"required> 
+  
+  <button>Add</button> 
+</form> 
+     
+</body> 
+</html>
