@@ -50,7 +50,7 @@ const store = MongoStore.create({
     mongoUrl: dbUrl,
     touchAfter: 24 * 3600,
     crypto: {
-        secret: "Secr3t_K3y_W4nd3rlust_Pr0duction_2026_Complex_Str0ng!"
+        secret: "4aef72db9e1a83c50f81d43a62bc90e5f2214b78edc36098fa552d0f91b72e3a8c160f47e2b395d861a0c7e549b382fd1a6bce48ef295036fa2d19c78fe5098b"
     }
 });
 
@@ -60,7 +60,7 @@ store.on("error", (err) => {
 
 const sessionOptions = {
     store,
-    secret: "Secr3t_K3y_W4nd3rlust_Pr0duction_2026_Complex_Str0ng!",
+    secret: "4aef72db9e1a83c50f81d43a62bc90e5f2214b78edc36098fa552d0f91b72e3a8c160f47e2b395d861a0c7e549b382fd1a6bce48ef295036fa2d19c78fe5098b",
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -70,6 +70,7 @@ const sessionOptions = {
     }
 };
 app.use(session(sessionOptions));
+
 
 // ================= FLASH =================
 
