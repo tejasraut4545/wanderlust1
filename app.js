@@ -137,6 +137,15 @@ const isLoggedIn = (req, res, next) => {
 };
 
 
+// ================= ROOT ROUTE =================
+
+//app.get("/", (req, res) => {
+
+   // res.send("Hi, I am root");
+
+//});
+//
+
 // ================= LISTINGS =================
 
 
@@ -420,24 +429,15 @@ app.post(
     }
 );
 
-
-// ================= ERROR HANDLING =================
-
-app.use((err, req, res, next) => {
-    console.error("SERVER ERROR:", err);
-    res.status(500).send("Something went wrong");
-});
-
-
 // ================= DATABASE CONNECTION & SERVER START =================
 
 const PORT = process.env.PORT || 8080;
 
-async function connectDB() {
+async function main() {
     await mongoose.connect(dbUrl);
 }
 
-connectDB()
+main()
     .then(() => {
         console.log("Connected to DB SUCCESSFULLY");
         app.listen(PORT, () => {
@@ -447,3 +447,14 @@ connectDB()
     .catch((err) => {
         console.log("Database connection error:", err);
     });
+
+
+
+
+// ================= ERROR HANDLING =================
+
+app.use((err, req, res, next) => {
+    console.error("SERVER ERROR:", err);
+    res.status(500).send("Something went wrong");
+});
+
