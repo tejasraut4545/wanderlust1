@@ -48,29 +48,24 @@ app.use(express.static(path.join(__dirname, "public")));
 // ================= SESSION =================
 const store = MongoStore.create({
     mongoUrl: dbUrl,
-    crypto: {
-        secret: "A1b2C3d4E5f6G7h8I9j0!@#$%^&*()_+~`|}{[]:;?><,./-=thisISanULTRAcomplexANDsuperLONGsecretKEYforWANDERLUSTapp2026!!!",
-    },
     touchAfter: 24 * 3600,
+    crypto: {
+        secret: "4aef72db9e1a83c50f81d43a62bc90e5f2214b78edc36098fa552d0f91b72e3a8c160f47e2b395d861a0c7e549b382fd1a6bce48ef295036fa2d19c78fe5098b"
+    }
 });
-store.on("error",(err)=>{
-    console.log("ERROR IN MONGO SESSION STORE",err);
+
+store.on("error", (err) => {
+    console.log("ERROR IN MONGO SESSION STORE", err);
 });
+
 const sessionOptions = {
     store,
-    secret:"A1b2C3d4E5f6G7h8I9j0!@#$%^&*()_+~`|}{[]:;?><,./-=thisISanULTRAcomplexANDsuperLONGsecretKEYforWANDERLUSTapp2026!!!",
-
+    secret: "4aef72db9e1a83c50f81d43a62bc90e5f2214b78edc36098fa552d0f91b72e3a8c160f47e2b395d861a0c7e549b382fd1a6bce48ef295036fa2d19c78fe5098b",
     resave: false,
-
     saveUninitialized: false,
-
     cookie: {
-        expires: new Date(
-            Date.now() + 7 * 24 * 60 * 60 * 1000
-        ),
-
+        expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
         maxAge: 7 * 24 * 60 * 60 * 1000,
-
         httpOnly: true
     }
 };
