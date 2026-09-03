@@ -53,7 +53,7 @@ const store = MongoStore.create({
     },
     touchAfter: 24 * 3600,
 });
-store.on("error",()=>{
+store.on("error",(err)=>{
     console.log("ERROR IN MONGO SESSION STORE",err);
 });
 const sessionOptions = {
@@ -136,15 +136,6 @@ const isLoggedIn = (req, res, next) => {
     next();
 };
 
-
-// ================= ROOT ROUTE =================
-
-//app.get("/", (req, res) => {
-
-   // res.send("Hi, I am root");
-
-//});
-//
 
 // ================= LISTINGS =================
 
@@ -429,27 +420,6 @@ app.post(
     }
 );
 
-// ================= DATABASE CONNECTION & SERVER START =================
-
-const PORT = process.env.PORT || 8080;
-
-async function main() {
-    await mongoose.connect(dbUrl);
-}
-
-main()
-    .then(() => {
-        console.log("Connected to DB SUCCESSFULLY");
-        app.listen(PORT, () => {
-            console.log(`Server is listening on port ${PORT}`);
-        });
-    })
-    .catch((err) => {
-        console.log("Database connection error:", err);
-    });
-
-
-
 
 // ================= ERROR HANDLING =================
 
@@ -458,15 +428,16 @@ app.use((err, req, res, next) => {
     res.status(500).send("Something went wrong");
 });
 
-// ================= DATABASE CONNECTION & SERVER START ===============
+
+// ================= DATABASE CONNECTION & SERVER START =================
 
 const PORT = process.env.PORT || 8080;
 
-async function main() {
+async function connectDB() {
     await mongoose.connect(dbUrl);
 }
 
-main()
+connectDB()
     .then(() => {
         console.log("Connected to DB SUCCESSFULLY");
         app.listen(PORT, () => {
@@ -476,5 +447,3 @@ main()
     .catch((err) => {
         console.log("Database connection error:", err);
     });
-
-
