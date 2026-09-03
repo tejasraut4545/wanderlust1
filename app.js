@@ -429,60 +429,52 @@ app.post(
     }
 );
 
+// ================= DATABASE CONNECTION & SERVER START =================
 
-// ================= DATABASE CONNECTION =================
+const PORT = process.env.PORT || 8080;
 
 async function main() {
-
     await mongoose.connect(dbUrl);
-
 }
-
 
 main()
     .then(() => {
-
-        console.log(
-            "Connected to DB"
-        );
-
+        console.log("Connected to DB SUCCESSFULLY");
+        app.listen(PORT, () => {
+            console.log(`Server is listening on port ${PORT}`);
+        });
     })
     .catch((err) => {
-
-        console.log(
-            "Database connection error:",
-            err
-        );
-
+        console.log("Database connection error:", err);
     });
+
+
 
 
 // ================= ERROR HANDLING =================
 
-app.use(
-    (err, req, res, next) => {
+app.use((err, req, res, next) => {
+    console.error("SERVER ERROR:", err);
+    res.status(500).send("Something went wrong");
+});
 
-        console.log(err);
+// ================= DATABASE CONNECTION & SERVER START =================
 
-        res.status(500).send(
-            "Something went wrong"
-        );
+const PORT = process.env.PORT || 8080;
 
-    }
-);
+async function main() {
+    await mongoose.connect(dbUrl);
+}
+
+main()
+    .then(() => {
+        console.log("Connected to DB SUCCESSFULLY");
+        app.listen(PORT, () => {
+            console.log(`Server is listening on port ${PORT}`);
+        });
+    })
+    .catch((err) => {
+        console.log("Database connection error:", err);
+    });
 
 
-// ================= SERVER =================
-
-const PORT = 8080;
-
-app.listen(
-    PORT,
-    () => {
-
-        console.log(
-            `Server is listening on port ${PORT}`
-        );
-
-    }
-);
