@@ -49,7 +49,7 @@ app.use(express.static(path.join(__dirname, "public")));
 const store = MongoStore.create({
     mongoUrl: dbUrl,
     crypto: {
-        secret: process.env.SECRET,
+        secret: "thisisasecureandverylongsecretkeyforwanderlustapplication12345",
     },
     touchAfter: 24 * 3600,
 });
@@ -58,7 +58,7 @@ store.on("error",()=>{
 });
 const sessionOptions = {
     store,
-    secret: process.env.SECRET,
+    secret:"thisisasecureandverylongsecretkeyforwanderlustapplication12345",
 
     resave: false,
 
